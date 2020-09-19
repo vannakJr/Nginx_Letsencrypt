@@ -16,7 +16,7 @@ services:
   
   certbot:
      image: certbot/certbot:latest
-     command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email vannak.chin@niptict.edu.kh --agree-tos --no-eff-email -d test.niptict.edu.kh
+     command: certonly --webroot -w /usr/share/nginx/html/letsencrypt -d test.niptict.edu.kh
      volumes:
        - ./certbot/conf/:/etc/letsencrypt
        - ./certbot/logs/:/var/log/letsencrypt
