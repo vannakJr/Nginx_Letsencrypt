@@ -9,14 +9,14 @@ services:
       - ./conf.d:/etc/nginx/conf.d/
       - ./dhparam:/etc/nginx/dhparam
       - ./certbot/conf/:/etc/nginx/ssl/
-      - ./certbot/data:/usr/share/nginx/html/letsencrypt
+      - ./certbot/data:/usr/share/nginx/html/
     ports:
       - 80:80
       - 443:443
   
   certbot:
      image: certbot/certbot:latest
-     command: certonly --webroot -w /usr/share/nginx/html/letsencrypt -d test.niptict.edu.kh
+     command: certonly --webroot -w /usr/share/nginx/html/ -d test.niptict.edu.kh
      volumes:
        - ./certbot/conf/:/etc/letsencrypt
        - ./certbot/logs/:/var/log/letsencrypt
