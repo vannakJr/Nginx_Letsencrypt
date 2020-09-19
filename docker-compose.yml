@@ -1,6 +1,13 @@
 version: '3.4'
 
 services: 
+certbot:
+     image: certbot/certbot:latest
+     command: certonly --webroot -w /usr/share/nginx/html/ -d test.niptict.edu.kh
+     volumes:
+       - ./certbot/conf/:/etc/letsencrypt
+       - ./certbot/logs/:/var/log/letsencrypt
+       - ./certbot/data:/usr/share/nginx/html/
   web:
     image: nginx:1.14.2-alpine
     restart: always
@@ -14,10 +21,4 @@ services:
       - 80:80
       - 443:443
   
-  certbot:
-     image: certbot/certbot:latest
-     command: certonly --webroot -w /usr/share/nginx/html/ -d test.niptict.edu.kh
-     volumes:
-       - ./certbot/conf/:/etc/letsencrypt
-       - ./certbot/logs/:/var/log/letsencrypt
-       - ./certbot/data:/usr/share/nginx/html/letsencrypt
+  
